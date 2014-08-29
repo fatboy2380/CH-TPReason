@@ -73,14 +73,13 @@
    if(!is_array(@logs)){die(colorize('&cError: &4No player data stored'))}
    @pages = ceil(array_size(@logs) / 10)
    if($page > @pages){die(colorize('&cError: &4No more player data stored past page '.@pages))}
-
+   
    msg(colorize('&6=&0----------&6[&eLatest Info on '.$name.'&6]&0----------&6='))
-   for(@co = 0 * 10 * ($page - 1), @co < 10 * $page , @co++)
+   for(@co = 0 * 10 * ($page - 1), @co < (10 * $page), @co++)
     {
      if(array_index_exists(@logs, @co))
       {msg(colorize('&7'.@logs[@co]))}
     }
-   
    msg(colorize('&6Page: &e'.$page.'/'.@pages))
   }
 <<<
