@@ -1,85 +1,72 @@
 *:/tp $name [$=''] = >>>
- if(!has_permission(player(), 'essentials.tp') )
-  {die(colorize('&cError: &4You do not have permission to do this.'))}
+  if(!has_permission(player(), 'essentials.tp') ){
+    die(colorize('&cError: &4You do not have permission to do this.'));
+  }
 
- if($ == '')
-  {die(colorize('&cError: &4You have not given a reason.'))}
+  if($ == ''){
+    die(colorize('&cError: &4You have not given a reason.'));
+  }
 
- if(array_contains_ic(all_players(), $name) )
-  {_log_this_tp(player(), $name, $)}
- run('/tp '.$name)
+  if(array_contains_ic(all_players(), $name) ){
+    _log_this_tp(player(), $name, $);
+  }
+  run('/tp '.$name);
 <<<
 
 *:/etp $name [$=''] = >>>
- if(!has_permission(player(), 'essentials.tp') )
-  {die(colorize('&cError: &4You do not have permission to do this.'))}
-
- if($ == '')
-  {die(colorize('&cError: &4You have not given a reason.'))}
-
- if(array_contains_ic(all_players(), $name) )
-  {_log_this_tp(player(), $name, $)}
- run('/etp '.$name)
+ call_alias('/tp'$name $);
 <<<
 
 *:/'essentials:tp' $name [$=''] = >>>
- if(!has_permission(player(), 'essentials.tp') )
-  {die(colorize('&cError: &4You do not have permission to do this.'))}
-
- if($ == '')
-  {die(colorize('&cError: &4You have not given a reason.'))}
-
- if(array_contains_ic(all_players(), $name) )
-  {_log_this_tp(player(), $name, $)}
- run('/tp '.$name)
+ call_alias('/tp'$name $);
 <<<
 
 *:/'essentials:etp' $name [$=''] = >>>
- if(!has_permission(player(), 'essentials.tp') )
-  {die(colorize('&cError: &4You do not have permission to do this.'))}
-
- if($ == '')
-  {die(colorize('&cError: &4You have not given a reason.'))}
-
- if(array_contains_ic(all_players(), $name) )
-  {_log_this_tp(player(), $name, $)}
- run('/tp '.$name)
+ call_alias('/tp'$name $);
 <<<
 
 *:/tplookup [$name=''] [$page='1'] [$]= >>>
- if(!has_permission(player(), 'ltp.lookup') )
-  {die(colorize('&cError: &4You do not have permission to do this.'))}
- if($name == '' || $name == 'all')
-  {
-   @logs = get_value(get_server_info(0).'.gtplogs')
+  if(!has_permission(player(), 'ltp.lookup') ){
+    die(colorize('&cError: &4You do not have permission to do this.');
+  }
+  if($name == '' || $name == 'all'){
+   @logs = get_value(get_server_info(0).'.gtplogs');
 
-   if(!is_array(@logs)){die(colorize('&cError: &4No player data stored'))}
-   @pages = ceil(array_size(@logs) / 10)
-   if($page > @pages){die(colorize('&cError: &4No more data stored past page '.@pages))}
+  if(!is_array(@logs)){
+    die(colorize('&cError: &4No player data stored'));
+  }
+  @pages = ceil(array_size(@logs) / 10);
+  if($page > @pages){
+    die(colorize('&cError: &4No more data stored past page '.@pages));
+  }
 
-   msg(colorize('&6=&0--------------&6[&eLatest Info&6]&0--------------&6='))
+   msg(colorize('&6=&0--------------&6[&eLatest Info&6]&0--------------&6='));
    for(@co = 0 * 10 * ($page - 1), @co < 10 * $page , @co++)
     {
-     if(array_index_exists(@logs, @co))
-      {msg(colorize('&7'.@logs[@co]))}
+      if(array_index_exists(@logs, @co)){
+        msg(colorize('&7'.@logs[@co]));
+      }
     }
    
-   msg(colorize('&6Page: &e'.$page.'/'.@pages))
-  }
- else
-  {
-   @logs = get_value(get_server_info(0).'.tplogs.'.to_lower($name))
+   msg(colorize('&6Page: &e'.$page.'/'.@pages));
+  }else{
+    @logs = get_value(get_server_info(0).'.tplogs.'.to_lower($name));
 
-   if(!is_array(@logs)){die(colorize('&cError: &4No player data stored'))}
-   @pages = ceil(array_size(@logs) / 10)
-   if($page > @pages){die(colorize('&cError: &4No more player data stored past page '.@pages))}
+    if(!is_array(@logs)){
+      die(colorize('&cError: &4No player data stored'));
+    }
+    @pages = ceil(array_size(@logs) / 10);
+    if($page > @pages){
+      die(colorize('&cError: &4No more player data stored past page '.@pages));
+    }
    
-   msg(colorize('&6=&0----------&6[&eLatest Info on '.$name.'&6]&0----------&6='))
+   msg(colorize('&6=&0----------&6[&eLatest Info on '.$name.'&6]&0----------&6='));
    for(@co = 0 * 10 * ($page - 1), @co < (10 * $page), @co++)
     {
-     if(array_index_exists(@logs, @co))
-      {msg(colorize('&7'.@logs[@co]))}
+      if(array_index_exists(@logs, @co)){
+        msg(colorize('&7'.@logs[@co]));
+      }
     }
-   msg(colorize('&6Page: &e'.$page.'/'.@pages))
+   msg(colorize('&6Page: &e'.$page.'/'.@pages));
   }
 <<<
